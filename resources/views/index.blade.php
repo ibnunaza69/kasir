@@ -66,6 +66,45 @@
     <script src="/assets/js/settings.js"></script>
     <script src="/assets/js/gleek.js"></script>
     <script src="/assets/js/styleSwitcher.js"></script>
+
+    <script src="/assets/js/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="/assets/js/sweetalert/sweetalert.min.js"></script>
+
+    @if (session('error'))
+    <script>
+        var SweetAlert2Demo = function() {
+            var initDemos = function() {
+
+                swal({
+                    title: "{{ session('error') }}",
+                    text: "{{ session('error') }}",
+                    icon: "error",
+                    buttons: {
+                        confirm: {
+                            text: "Confirm Me",
+                            value: true,
+                            visible: true,
+                            className: "btn btn-success",
+                            closeModal: true
+                        }
+                    }
+                });
+            };
+
+            return {
+                init: function() {
+                    initDemos();
+                },
+            };
+        }();
+
+        jQuery(document).ready(function() {
+            SweetAlert2Demo.init();
+        });
+    </script>
+    @endif
+
+
 </body>
 </html>
 
