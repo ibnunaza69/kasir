@@ -17,4 +17,3 @@ $response = $kernel->handle($request)->send();
 // Setelah menangani permintaan, terminasi skrip dan kirim respons ke browser
 $kernel->terminate($request, $response);
 
-?>
