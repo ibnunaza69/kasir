@@ -116,7 +116,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                 </button>
             </div>
-            <form method="POST" action="/user/update/{{$d-id}} ">
+            <form method="POST" action="/user/update/{{$d->id}} ">
             @csrf
             <div class="modal-body">
                 <div class="form-group">
@@ -160,7 +160,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
                 </button>
             </div>
-            <form method="GET" action="/user/destroy/{{$d-id}} ">
+            <form method="GET" action="/user/destroy/{{$d->id}} ">
             @csrf
             <div class="modal-body">
                 <div class="form-group">
