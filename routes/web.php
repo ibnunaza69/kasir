@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\JenisBarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,11 @@ Route::group(['middleware' => ['auth','checkrole:admin']], function(){
     Route::get('/user/update/{id}', [UserController::class, 'update']);
     Route::get('/user/destroy/{id}', [UserController::class, 'destroy']);
     
+    // crud data jenis barang
+    Route::get('/jenisbarang', [JenisBarangController::class, 'index']);
+    Route::get('/jenisbarang/store', [JenisBarangController::class, 'store']);
+    Route::get('/jenisbarang/update/{id}', [JenisBarangController::class, 'update']);
+    Route::get('/jenisbarang/destroy/{id}', [JenisBarangController::class, 'destroy']);
 });
 
 Route::group(['middleware' => ['auth','checkrole:admin,kasir']], function(){
