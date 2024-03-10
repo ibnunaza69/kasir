@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JenisBarangController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\DiskonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,10 +39,24 @@ Route::group(['middleware' => ['auth','checkrole:admin']], function(){
     Route::get('/jenisbarang/store', [JenisBarangController::class, 'store']);
     Route::get('/jenisbarang/update/{id}', [JenisBarangController::class, 'update']);
     Route::get('/jenisbarang/destroy/{id}', [JenisBarangController::class, 'destroy']);
+
+    // crud data barang
+    Route::get('/barang', [BarangController::class, 'index']);
+    Route::get('/barang/store', [BarangController::class, 'store']);
+    Route::get('/barang/update/{id}', [BarangController::class, 'update']);
+    Route::get('/barang/destroy/{id}', [BarangController::class, 'destroy']);
+
+    // Setting Diskon
+    Route::get('/setdiskon', [DiskonController::class, 'index']);
+    Route::get('/setdiskon/update/{id}', [DiskonController::class, 'update']);
 });
 
 Route::group(['middleware' => ['auth','checkrole:admin,kasir']], function(){
 
     route::get('/home', [HomeController::class, 'index']);
+
+    // Setting Profile
+    Route::get('/profile', [UserController::class, 'profile']);
+    Route::get('/profile/updateprofile/{id}', [UserController::class, 'updateprofile']);
 
 });
