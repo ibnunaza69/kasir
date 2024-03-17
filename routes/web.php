@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\JenisBarangController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DiskonController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,25 +31,25 @@ Route::group(['middleware' => ['auth','checkrole:admin']], function(){
 
     // crud data user
     Route::get('/user', [UserController::class, 'index']);
-    Route::get('/user/store', [UserController::class, 'store']);
-    Route::get('/user/update/{id}', [UserController::class, 'update']);
+    Route::post('/user/store', [UserController::class, 'store']);
+    Route::post('/user/update/{id}', [UserController::class, 'update']);
     Route::get('/user/destroy/{id}', [UserController::class, 'destroy']);
     
     // crud data jenis barang
     Route::get('/jenisbarang', [JenisBarangController::class, 'index']);
-    Route::get('/jenisbarang/store', [JenisBarangController::class, 'store']);
-    Route::get('/jenisbarang/update/{id}', [JenisBarangController::class, 'update']);
+    Route::post('/jenisbarang/store', [JenisBarangController::class, 'store']);
+    Route::post('/jenisbarang/update/{id}', [JenisBarangController::class, 'update']);
     Route::get('/jenisbarang/destroy/{id}', [JenisBarangController::class, 'destroy']);
 
     // crud data barang
     Route::get('/barang', [BarangController::class, 'index']);
-    Route::get('/barang/store', [BarangController::class, 'store']);
-    Route::get('/barang/update/{id}', [BarangController::class, 'update']);
+    Route::post('/barang/store', [BarangController::class, 'store']);
+    Route::post('/barang/update/{id}', [BarangController::class, 'update']);
     Route::get('/barang/destroy/{id}', [BarangController::class, 'destroy']);
 
     // Setting Diskon
     Route::get('/setdiskon', [DiskonController::class, 'index']);
-    Route::get('/setdiskon/update/{id}', [DiskonController::class, 'update']);
+    Route::post('/setdiskon/update/{id}', [DiskonController::class, 'update']);
 });
 
 Route::group(['middleware' => ['auth','checkrole:admin,kasir']], function(){
@@ -57,6 +58,10 @@ Route::group(['middleware' => ['auth','checkrole:admin,kasir']], function(){
 
     // Setting Profile
     Route::get('/profile', [UserController::class, 'profile']);
-    Route::get('/profile/updateprofile/{id}', [UserController::class, 'updateprofile']);
+    Route::post('/profile/updateprofile/{id}', [UserController::class, 'updateprofile']);
+
+    // Data Transaksi
+    Route::get('/transaksi', [TransaksiController::class, 'index']);
+    Route::get('/transaksi/create', [TransaksiController::class, 'create']);
 
 });
